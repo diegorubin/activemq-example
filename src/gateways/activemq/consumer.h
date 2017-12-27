@@ -5,7 +5,8 @@
 #include <cms/MessageListener.h>
 #include <decaf/lang/Runnable.h>
 
-using namespace activemq::core;
+using namespace cms;
+using namespace decaf::lang;
 
 class Consumer : public ExceptionListener,
                  public MessageListener,
