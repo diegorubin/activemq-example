@@ -11,6 +11,7 @@ activemqexample_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 activemqexample_SOURCES = main.cc \
+	config.cc \
 	gateways/activemq/consumer.cc \
 	gateways/activemq/producer.cc
 

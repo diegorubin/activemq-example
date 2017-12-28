@@ -31,9 +31,11 @@ void Consumer::connect() {
 
     // Create a MessageConsumer from the Session to the Queue
     consumer = session->createConsumer(destination);
-    consumer->setMessageListener(this);
 
     cout << "consumer connected!" << endl;
+    while(true) {
+      this->onMessage(consumer->receive());
+    }
 
   } catch (CMSException& e) {
     e.printStackTrace();

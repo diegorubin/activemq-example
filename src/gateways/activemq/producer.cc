@@ -24,7 +24,6 @@ void Producer::connect() {
     connection->start();
 
     session = connection->createSession(Session::AUTO_ACKNOWLEDGE);
-
     destination = session->createQueue("activemq.example.Queue");
 
     // Create a MessageProducer from the Session to the Topic or Queue
