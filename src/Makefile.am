@@ -4,16 +4,24 @@ ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 
 AM_CPPFLAGS = ${ActiveMQExample_CFLAGS} -std=c++11 -Wno-deprecated-declarations
 
-bin_PROGRAMS = activemqexample
+bin_PROGRAMS = consumer producer
 
-activemqexample_CPPFLAGS = \
+consumer_CPPFLAGS = \
 	-I$(includedir)					\
 	$(AM_CPPFLAGS)
 
-activemqexample_SOURCES = main.cc \
+producer_CPPFLAGS = \
+	-I$(includedir)					\
+	$(AM_CPPFLAGS)
+
+consumer_SOURCES = consumer.cc \
 	config.cc \
-	gateways/activemq/consumer.cc \
+	gateways/activemq/consumer.cc
+
+producer_SOURCES = producer.cc \
+	config.cc \
 	gateways/activemq/producer.cc
 
-activemqexample_LDADD = ${ActiveMQExample_LIBS}
+consumer_LDADD = ${ActiveMQExample_LIBS}
+producer_LDADD = ${ActiveMQExample_LIBS}
 

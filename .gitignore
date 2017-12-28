@@ -22,7 +22,8 @@ depcomp
 install-sh
 missing
 stamp-h?
-activemqexample
+producer
+consumer
 *.in
 po/stamp-it
 mkinstalldirs
