@@ -14,8 +14,7 @@ using namespace decaf::lang;
 using namespace std;
 
 class Consumer : public ExceptionListener,
-                 public MessageListener,
-                 public Runnable {
+                 public MessageListener {
 
 private:
   // attributes
@@ -35,8 +34,9 @@ public:
 
   virtual void onMessage(const Message* message);
   virtual void onException(const CMSException& ex AMQCPP_UNUSED);
-  virtual void run();
+
   void close();
+  void connect();
 };
 
 #endif

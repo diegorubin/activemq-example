@@ -12,7 +12,7 @@ void Consumer::close() {
   this->cleanup();
 }
 
-void Consumer::run() {
+void Consumer::connect() {
 
   try {
 
@@ -26,12 +26,14 @@ void Consumer::run() {
     connection->start();
 
     // Create a Session
-    session = connection->createSession(Session::SESSION_TRANSACTED);
-    destination = session->createQueue("activemq.example.queue");
+    session = connection->createSession(Session::AUTO_ACKNOWLEDGE);
+    destination = session->createQueue("activemq.example.Queue");
 
     // Create a MessageConsumer from the Session to the Queue
     consumer = session->createConsumer(destination);
     consumer->setMessageListener(this);
+
+    cout << "consumer connected!" << endl;
 
   } catch (CMSException& e) {
     e.printStackTrace();
@@ -54,9 +56,6 @@ void Consumer::onMessage(const Message* message) {
   } catch (CMSException& e) {
       e.printStackTrace();
   }
-
-  session->commit();
-
 }
 
 void Consumer::cleanup() {

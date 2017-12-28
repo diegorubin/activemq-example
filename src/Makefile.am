@@ -11,7 +11,8 @@ activemqexample_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 activemqexample_SOURCES = main.cc \
-	gateways/activemq/consumer.cc
+	gateways/activemq/consumer.cc \
+	gateways/activemq/producer.cc
 
 activemqexample_LDADD = ${ActiveMQExample_LIBS}
 

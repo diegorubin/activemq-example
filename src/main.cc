@@ -3,17 +3,20 @@
 #include <iostream>
 
 #include "gateways/activemq/consumer.h"
+#include "gateways/activemq/producer.h"
 
 int main(int argc, char* argv[]) {
   activemq::library::ActiveMQCPP::initializeLibrary();
 
   std::string brokerURI = "failover:(tcp://localhost:61616)";
 
-  Consumer consumer(brokerURI);
-  Thread consumerThread(&consumer);
-  consumerThread.start();
+  Producer producer(brokerURI);
+  producer.connect();
+  producer.publishText("apenas um texto");
+  producer.close();
 
-  consumerThread.join();
+  Consumer consumer(brokerURI);
+  consumer.connect();
 
   activemq::library::ActiveMQCPP::shutdownLibrary();
 	return 0;
