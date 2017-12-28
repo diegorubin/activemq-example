@@ -23,18 +23,20 @@ private:
   MessageConsumer* consumer;
   Session* session;
   string brokerURI;
+  string queueName;
 
   // methods
   Consumer(const Consumer&);
   void cleanup();
 
 public:
-  Consumer(const string& brokerURI);
+  Consumer(const string& brokerURI, const string& queueName);
   virtual ~Consumer();
 
   virtual void onMessage(const Message* message);
   virtual void onException(const CMSException& ex AMQCPP_UNUSED);
 
+  int buffToInteger(unsigned char* buffer);
   void close();
   void connect();
 };

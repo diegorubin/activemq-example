@@ -17,18 +17,20 @@ private:
   MessageProducer* producer;
   Session* session;
   string brokerURI;
+  string queueName;
 
   // methods
   Producer(const Producer&);
   void cleanup();
 
 public:
-  Producer(const string& brokerURI);
+  Producer(const string& brokerURI, const string& queueName);
   virtual ~Producer();
 
   void connect();
   void close();
   void publishText(string text);
+  void publishBytes(const unsigned char *buffer, int bytesSize);
 };
 
 #endif

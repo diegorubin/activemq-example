@@ -1,7 +1,8 @@
 #include "gateways/activemq/producer.h"
 
-Producer::Producer(const string& brokerURI) : 
-  brokerURI(brokerURI) {
+Producer::Producer(const string& brokerURI, const string& queueName) : 
+  brokerURI(brokerURI),
+  queueName(queueName){
 }
 
 Producer::~Producer() {
@@ -24,7 +25,7 @@ void Producer::connect() {
     connection->start();
 
     session = connection->createSession(Session::AUTO_ACKNOWLEDGE);
-    destination = session->createQueue("activemq.example.Queue");
+    destination = session->createQueue(queueName);
 
     // Create a MessageProducer from the Session to the Topic or Queue
     producer = session->createProducer(destination);
@@ -37,6 +38,12 @@ void Producer::connect() {
 
 void Producer::publishText(string text) {
   std::unique_ptr<TextMessage> message(session->createTextMessage(text));
+  message->setIntProperty("Integer", 0);
+  producer->send(message.get());
+}
+
+void Producer::publishBytes(const unsigned char *buffer, int bytesSize) {
+  std::unique_ptr<BytesMessage> message(session->createBytesMessage(buffer, bytesSize));
   message->setIntProperty("Integer", 0);
   producer->send(message.get());
 }

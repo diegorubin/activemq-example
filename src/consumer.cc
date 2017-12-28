@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
   Config configs;
   activemq::library::ActiveMQCPP::initializeLibrary();
 
-  Consumer consumer(configs.getBrokerURI());
+  Consumer consumer(configs.getBrokerURI(), configs.getQueueName());
   consumer.connect();
 
   activemq::library::ActiveMQCPP::shutdownLibrary();

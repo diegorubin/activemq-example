@@ -1,7 +1,8 @@
 #include "gateways/activemq/consumer.h"
 
-Consumer::Consumer(const string& brokerURI) : 
-  brokerURI(brokerURI) {
+Consumer::Consumer(const string& brokerURI, const string& queueName) : 
+  brokerURI(brokerURI),
+  queueName(queueName) {
 }
 
 Consumer::~Consumer() {
@@ -27,7 +28,7 @@ void Consumer::connect() {
 
     // Create a Session
     session = connection->createSession(Session::AUTO_ACKNOWLEDGE);
-    destination = session->createQueue("activemq.example.Queue");
+    destination = session->createQueue(queueName);
 
     // Create a MessageConsumer from the Session to the Queue
     consumer = session->createConsumer(destination);
@@ -45,16 +46,18 @@ void Consumer::connect() {
 void Consumer::onMessage(const Message* message) {
 
   try {
-      const TextMessage* textMessage = dynamic_cast<const TextMessage*> (message);
-      string text = "";
+      const BytesMessage* bytesMessage = dynamic_cast<const BytesMessage*> (message);
 
-      if (textMessage != NULL) {
-          text = textMessage->getText();
+      cout << "message incoming" << endl;
+
+      if (bytesMessage != NULL) {
+        unsigned char buffer[4];
+        bytesMessage->readBytes(buffer, 4);
+        cout << "int: " << buffToInteger(buffer) << endl;
       } else {
-          text = "NOT A TEXTMESSAGE!";
+        cout << "NOT A BINARYMESSAGE!" << endl;
       }
 
-      cout << "Message received: " << text << endl;
   } catch (CMSException& e) {
       e.printStackTrace();
   }
@@ -87,4 +90,12 @@ void Consumer::cleanup() {
 void Consumer::onException(const CMSException& ex AMQCPP_UNUSED) {
   cerr << "CMS Exception occurred. Shutting down client." << endl;
   ex.printStackTrace();
+}
+
+int Consumer::buffToInteger(unsigned char* buffer) {
+    int value = static_cast<int>(static_cast<unsigned char>(buffer[0]) << 24 |
+        static_cast<unsigned char>(buffer[1]) << 16 | 
+        static_cast<unsigned char>(buffer[2]) << 8 | 
+        static_cast<unsigned char>(buffer[3]));
+    return value;
 }
