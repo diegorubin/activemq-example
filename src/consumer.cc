@@ -2,11 +2,11 @@
 #include <decaf/lang/Thread.h>
 #include <iostream>
 
-#include "config.h"
+#include "config/application_config.h"
 #include "gateways/activemq/consumer.h"
 
 int main(int argc, char* argv[]) {
-  Config configs;
+  ApplicationConfig configs;
   activemq::library::ActiveMQCPP::initializeLibrary();
 
   Consumer consumer(configs.getBrokerURI(), configs.getQueueName());

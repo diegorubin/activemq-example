@@ -1,22 +1,22 @@
-#include "config.h"
+#include "config/application_config.h"
 
-Config::Config() {
+ApplicationConfig::ApplicationConfig() {
   brokerURI = string(loadFromEnv("BROKER_URI", "failover:(tcp://localhost:61616)"));
   queueName = string(loadFromEnv("QUEUE_NAME", "activemq.example.Binary"));
 }
 
-Config::~Config() {
+ApplicationConfig::~ApplicationConfig() {
 }
 
-string Config::getBrokerURI() {
+string ApplicationConfig::getBrokerURI() {
   return brokerURI;
 }
 
-string Config::getQueueName() {
+string ApplicationConfig::getQueueName() {
   return queueName;
 }
 
-const char* Config::loadFromEnv(const char* variable, const char* defaults) {
+const char* ApplicationConfig::loadFromEnv(const char* variable, const char* defaults) {
   const char* value = getenv(variable);
   if (!value) {
     cout << variable << "=" << defaults << endl;
