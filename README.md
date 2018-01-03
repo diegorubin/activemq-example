@@ -23,7 +23,7 @@ sudo make install
 
 ```
 autoreconf -vi
-./configure
+./configure --prefix=/usr
 make
 ```
 
