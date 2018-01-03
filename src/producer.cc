@@ -6,7 +6,7 @@
 #include "gateways/activemq/producer.h"
 
 int main(int argc, char* argv[]) {
-  ApplicationConfig configs;
+  ApplicationConfig configs = ApplicationConfig::getInstance();
   activemq::library::ActiveMQCPP::initializeLibrary();
 
   Producer producer(configs.getBrokerURI(), configs.getQueueName());

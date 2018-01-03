@@ -33,7 +33,7 @@ void Consumer::connect() {
     // Create a MessageConsumer from the Session to the Queue
     consumer = session->createConsumer(destination);
 
-    cout << "consumer connected!" << endl;
+    LoggerConfig::info("consumer connected!");
     while(true) {
       this->onMessage(consumer->receive());
     }
@@ -48,14 +48,14 @@ void Consumer::onMessage(const Message* message) {
   try {
       const BytesMessage* bytesMessage = dynamic_cast<const BytesMessage*> (message);
 
-      cout << "message incoming" << endl;
-
       if (bytesMessage != NULL) {
         unsigned char buffer[4];
         bytesMessage->readBytes(buffer, 4);
-        cout << "int: " << buffToInteger(buffer) << endl;
+        string log = "receiving int: ";
+        log.append(to_string(buffToInteger(buffer)));
+        LoggerConfig::info(log);
       } else {
-        cout << "NOT A BINARYMESSAGE!" << endl;
+        LoggerConfig::info("NOT A BINARYMESSAGE!");
       }
 
   } catch (CMSException& e) {

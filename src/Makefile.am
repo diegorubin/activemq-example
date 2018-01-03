@@ -16,10 +16,12 @@ producer_CPPFLAGS = \
 
 consumer_SOURCES = consumer.cc \
 	config/application_config.cc \
+	config/logger_config.cc \
 	gateways/activemq/consumer.cc
 
 producer_SOURCES = producer.cc \
 	config/application_config.cc \
+	config/logger_config.cc \
 	gateways/activemq/producer.cc
 
 consumer_LDADD = ${ActiveMQExample_LIBS}

@@ -17,7 +17,7 @@ sudo bin/activemq start
 Install activemq-cpp
 
 `sudo apt-get install libgnutls-dev libapr1 libapr1-dev libtool build-essential
-libcppunit libcppunit-dev`
+libcppunit libcppunit-dev liblog4cxx10v5 liblog4cxx10-dev`
 
 ```
 wget http://ftp.unicamp.br/pub/apache/activemq/activemq-cpp/3.9.4/activemq-cpp-library-3.9.4-src.tar.gz

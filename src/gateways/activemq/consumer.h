@@ -8,6 +8,8 @@
 #include <iostream>
 #include <memory>
 
+#include "config/logger_config.h"
+
 using namespace activemq::core;
 using namespace cms;
 using namespace decaf::lang;
