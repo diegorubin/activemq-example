@@ -1,11 +1,11 @@
 ActiveMQ Example
 ================
 
-##Install dependencies
+## Install dependencies
 
-###Ubuntu
+### Ubuntu
 
-Install dependencies
+Install activemq-cpp
 
 `sudo apt-get install libgnutls-dev libapr1 libapr1-dev libtool build-essential
 libcppunit libcppunit-dev`
@@ -21,7 +21,7 @@ make
 sudo make install
 ```
 
-##To Build
+## To Build
 
 `autoreconf -vi`
 
@@ -29,7 +29,7 @@ sudo make install
 
 `make`
 
-##To Run
+## To Run
 
 `src/consumer`
 
