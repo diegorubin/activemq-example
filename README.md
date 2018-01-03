@@ -5,6 +5,15 @@ ActiveMQ Example
 
 ### Ubuntu
 
+Running activemq
+
+```
+wget http://mirror.nbtelecom.com.br/apache/activemq/5.15.2/apache-activemq-5.15.2-bin.tar.gz
+tar -zxvf apache-activemq-5.15.2-bin.tar.gz
+cd apache-activemq-5.15.2
+sudo bin/activemq start
+```
+
 Install activemq-cpp
 
 `sudo apt-get install libgnutls-dev libapr1 libapr1-dev libtool build-essential
@@ -34,6 +43,4 @@ make
 `src/producer`
 
 With activemq running.
-
-
 
