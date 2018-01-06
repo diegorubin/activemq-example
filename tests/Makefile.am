@@ -7,9 +7,9 @@ tests_SOURCES = main.cc \
 
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 
-AM_CPPFLAGS = ${ActiveMQExample_CFLAGS}
+AM_CPPFLAGS = ${ActiveMQExample_CFLAGS} ${ActiveMQExampleTest_CFLAGS}
 
-AM_LIBS = ${ActiveMQExample_LIBS}
+AM_LIBS = ${ActiveMQExample_LIBS} ${ActiveMQExampleTest_LIBS}
 
 tests_CPPFLAGS = \
 	-I/usr/include \
@@ -18,7 +18,6 @@ tests_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 tests_LDADD = $(top_builddir)/src/services/consumer-message_processor.o \
-	/usr/local/lib/libgtest.a \
 	$(top_builddir)/src/config/consumer-logger_config.o \
 	$(top_builddir)/src/config/consumer-application_config.o \
 	${AM_LIBS} 
