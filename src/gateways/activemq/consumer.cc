@@ -46,17 +46,18 @@ void Consumer::connect() {
 void Consumer::onMessage(const Message* message) {
 
   try {
-      const BytesMessage* bytesMessage = dynamic_cast<const BytesMessage*> (message);
+    const BytesMessage* bytesMessage = dynamic_cast<const BytesMessage*> (message);
 
-      if (bytesMessage != NULL) {
-        unsigned char buffer[4];
-        bytesMessage->readBytes(buffer, 4);
-        string log = "receiving int: ";
-        log.append(to_string(buffToInteger(buffer)));
-        LoggerConfig::info(log);
-      } else {
-        LoggerConfig::info("NOT A BINARYMESSAGE!");
-      }
+    if (bytesMessage != NULL) {
+      unsigned char buffer[4];
+      bytesMessage->readBytes(buffer, 4);
+
+      MessageProcessor processor(buffer);
+      processor.process();
+
+    } else {
+      LoggerConfig::info("NOT A BINARYMESSAGE!");
+    }
 
   } catch (CMSException& e) {
       e.printStackTrace();
@@ -92,10 +93,3 @@ void Consumer::onException(const CMSException& ex AMQCPP_UNUSED) {
   ex.printStackTrace();
 }
 
-int Consumer::buffToInteger(unsigned char* buffer) {
-    int value = static_cast<int>(static_cast<unsigned char>(buffer[0]) << 24 |
-        static_cast<unsigned char>(buffer[1]) << 16 | 
-        static_cast<unsigned char>(buffer[2]) << 8 | 
-        static_cast<unsigned char>(buffer[3]));
-    return value;
-}

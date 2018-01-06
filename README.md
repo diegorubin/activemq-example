@@ -44,3 +44,19 @@ make
 
 With activemq running.
 
+## To Run Tests
+
+Install libgtest dependency
+
+```
+git clone https://github.com/google/googletest.git
+cd googletest
+cmake CMakeLists.txt
+make
+sudo make install
+```
+
+Run tests with
+
+`make check`
+

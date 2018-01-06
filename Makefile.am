@@ -1,4 +1,6 @@
-ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 
 SUBDIRS = \
-	  src
+	  src \
+		tests
+

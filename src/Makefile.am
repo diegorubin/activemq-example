@@ -17,6 +17,7 @@ producer_CPPFLAGS = \
 consumer_SOURCES = consumer.cc \
 	config/application_config.cc \
 	config/logger_config.cc \
+	services/message_processor.cc \
 	gateways/activemq/consumer.cc
 
 producer_SOURCES = producer.cc \

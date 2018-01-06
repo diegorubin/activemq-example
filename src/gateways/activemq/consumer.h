@@ -9,6 +9,7 @@
 #include <memory>
 
 #include "config/logger_config.h"
+#include "services/message_processor.h"
 
 using namespace activemq::core;
 using namespace cms;
@@ -38,7 +39,6 @@ public:
   virtual void onMessage(const Message* message);
   virtual void onException(const CMSException& ex AMQCPP_UNUSED);
 
-  int buffToInteger(unsigned char* buffer);
   void close();
   void connect();
 };
