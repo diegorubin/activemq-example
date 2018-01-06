@@ -58,5 +58,9 @@ sudo make install
 
 Run tests with
 
-`make check`
+```
+./configure --prefix=/usr --with-tests
+make
+make check
+```
 
