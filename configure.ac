@@ -13,7 +13,7 @@ PKG_CHECK_MODULES([ActiveMQExample],[activemq-cpp, liblog4cxx])
 
 AC_ARG_WITH([tests], AS_HELP_STRING([--with-tests], [Check tests dependencies]))
 AS_IF([test "x$with_tests" = "xyes"], [
-  PKG_CHECK_MODULES([ActiveMQExampleTest], [gtest])
+  PKG_CHECK_MODULES([ActiveMQExampleTest], [gtest, gmock])
 ])
 
 AC_CONFIG_FILES([

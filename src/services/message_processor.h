@@ -11,6 +11,7 @@ private:
 
   // methods
   int buffToInteger(unsigned char* buffer);
+  virtual void logInfo(string logMessage);
 
 public:
   MessageProcessor(unsigned char* message);

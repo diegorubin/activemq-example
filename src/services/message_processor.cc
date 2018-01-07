@@ -7,7 +7,7 @@ MessageProcessor::MessageProcessor(unsigned char* message) {
 void MessageProcessor::process() {
   string log = "receiving int: ";
   log.append(to_string(buffToInteger(message)));
-  LoggerConfig::info(log);
+  logInfo(log);
 }
 
 int MessageProcessor::buffToInteger(unsigned char* buffer) {
@@ -16,5 +16,9 @@ int MessageProcessor::buffToInteger(unsigned char* buffer) {
       static_cast<unsigned char>(buffer[2]) << 8 | 
       static_cast<unsigned char>(buffer[3]));
   return value;
+}
+
+void MessageProcessor::logInfo(string logMessage) {
+  LoggerConfig::info(logMessage);
 }
 

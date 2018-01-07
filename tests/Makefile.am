@@ -3,7 +3,8 @@ AUTOMAKE_OPTIONS = subdir-objects
 TESTS = tests
 check_PROGRAMS = tests
 tests_SOURCES = main.cc \
-	services/message_processor_test.cc
+	services/message_processor_test.cc \
+	services/mocks/mock_message_processor.cc
 
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 
